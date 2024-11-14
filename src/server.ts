@@ -8,6 +8,7 @@ app.get('/webhook', async (request, reply) => {
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { config } from 'dotenv';
+import { createProjectWithBudget } from './open';
 
 config();
 
@@ -17,19 +18,21 @@ if (!apiKey) {
   throw new Error('GEMINI_API_KEY is not set');
 }
 
-const genAI = new GoogleGenerativeAI(apiKey);
+createProjectWithBudget();
 
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+// const genAI = new GoogleGenerativeAI(apiKey);
 
-const prompt = "Crie nomem de um trader objetivos que enfrenta seus medos e a ganancia";
+// const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-model.generateContent(prompt)
-  .then(response => {
-    console.log(response.response.text());
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+// const prompt = "Crie nomem de um trader objetivos que enfrenta seus medos e a ganancia";
+
+// model.generateContent(prompt)
+//   .then(response => {
+//     console.log(response.response.text());
+//   })
+//   .catch(error => {
+//     console.error('Error:', error);
+//   });
 
 // app.listen({ port: 8081 }, (err, address) => {
 //   if (err) {
