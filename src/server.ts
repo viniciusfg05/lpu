@@ -8,7 +8,7 @@ app.get('/webhook', async (request, reply) => {
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { config } from 'dotenv';
-import { createProjectWithBudget } from './open';
+import { CreateProjectWithBudget } from './create.project.with.budget';
 
 config();
 
@@ -18,7 +18,7 @@ if (!apiKey) {
   throw new Error('GEMINI_API_KEY is not set');
 }
 
-createProjectWithBudget();
+CreateProjectWithBudget({   });
 
 // const genAI = new GoogleGenerativeAI(apiKey);
 
@@ -34,10 +34,10 @@ createProjectWithBudget();
 //     console.error('Error:', error);
 //   });
 
-// app.listen({ port: 8081 }, (err, address) => {
-//   if (err) {
-//     console.error(err)
-//     process.exit(1)
-//   }
-//   console.log(`Server listening at ${address}`)
-// })
+app.listen({ port: 8081 }, (err, address) => {
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+  console.log(`Server listening at ${address}`)
+})
